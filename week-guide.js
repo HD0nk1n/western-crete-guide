@@ -10,17 +10,47 @@ window.WEEK_GUIDE = [
 ];
 
 (function(){
- const css=document.createElement('link');css.rel='stylesheet';css.href='week-guide.css';document.head.appendChild(css);
- const screen=document.createElement('section');screen.id='week';screen.className='screen';
- screen.innerHTML=`<div class="week-hero"><div><p class="eyebrow">16–23 August 2026</p><h2>Your week, planned intelligently</h2><p>Use market days and regular closures to choose the right outing, while keeping every day flexible around heat and energy.</p></div></div>
- <div class="week-alert"><b>Important:</b> market locations and summer opening hours can change. This guide uses the latest published information, but check linked official pages again shortly before travelling.</div>
- <div class="planning-rules"><div class="rule-card"><h3>Tuesday rule</h3><p>Keep Tuesday for drives, villages or water. Ancient Aptera and the Archaeological Museum currently list Tuesday closures.</p></div><div class="rule-card"><h3>Market rule</h3><p>Go early. Markets are cooler, less crowded and easier to combine with a short city visit before lunch.</p></div><div class="rule-card"><h3>Heat rule</h3><p>Outdoor archaeology before 10:30. Museums, lunch, scenic drives and the villa pool for the hottest hours.</p></div></div>
- <div id="weekGrid" class="week-grid"></div>
- <div class="source-note">Checked against current official information from the <a href="https://www.chania.gr/enimerosi/nea/arxeia-dt/archeio-dt-2026/sto-oikopedo-tis-proin-avea-i-laiki-agora-tis-pebtis/" target="_blank" rel="noopener">Municipality of Chania</a>, <a href="https://ancientaptera.gr/en/contact_us/" target="_blank" rel="noopener">Ancient Aptera</a>, the <a href="https://amch.gr/en/" target="_blank" rel="noopener">Archaeological Museum of Chania</a> and the <a href="https://www.rethymno.gr/en/city/dieta-cretese/mercati-all-aperto.html" target="_blank" rel="noopener">Municipality of Rethymno</a>.</div>`;
- document.querySelector('main').insertBefore(screen,document.querySelector('#restaurants'));
- const nav=document.createElement('button');nav.className='nav';nav.dataset.screen='week';nav.innerHTML='<span>▦</span>Week';document.querySelector('.bottom-nav').insertBefore(nav,document.querySelector('.bottom-nav [data-screen="restaurants"]'));nav.onclick=()=>go('week');
- function action(link){const [label,target]=link;if(target==='restaurants'||target==='explore'){return `<button data-week-go="${target}">${label}</button>`}const place=places.find(p=>p.id===target);if(place)return `<button data-week-place="${target}">${label}</button>`;return `<a class="secondary" href="${target}" target="_blank" rel="noopener">${label}</a>`}
- document.querySelector('#weekGrid').innerHTML=window.WEEK_GUIDE.map(d=>`<article class="day-card ${d.birthday?'birthday':''}"><div class="day-head"><div class="day-date"><b>${d.date}</b><span>Aug</span></div><div class="day-title"><h3>${d.day}: ${d.title}</h3><p>${d.birthday?'Eponine’s 9th birthday':'Flexible family plan'}</p></div><span class="day-badge">${d.badge}</span></div><div class="day-body"><div class="day-columns"><div class="day-box"><h4>Good plan</h4><p>${d.plan}</p></div><div class="day-box avoid"><h4>Watch out for</h4><p>${d.avoid}</p></div></div>${d.market?`<div class="market-row"><span class="market-icon">▤</span><div><b>Market note</b><span>${d.market}</span></div></div>`:''}<div class="day-actions">${d.links.map(action).join('')}</div></div></article>`).join('');
- document.querySelectorAll('[data-week-go]').forEach(b=>b.onclick=()=>go(b.dataset.weekGo));document.querySelectorAll('[data-week-place]').forEach(b=>b.onclick=()=>openPlace(b.dataset.weekPlace));
- const home=document.createElement('section');home.className='section';home.innerHTML='<div class="section-head"><div><p class="eyebrow">Plan around the island</p><h2>Day-by-day guide</h2></div><button class="text-btn">Open week</button></div><div class="note"><h3>Tuesday is the key closure day</h3><p>Use Tuesday for a scenic drive or village lunch, then place archaeology and the Chania museum on other mornings.</p></div>';document.querySelector('#home').appendChild(home);home.querySelector('button').onclick=()=>go('week');
+  const css=document.createElement('link');
+  css.rel='stylesheet';
+  css.href='week-guide.css';
+  document.head.appendChild(css);
+
+  const screen=document.createElement('section');
+  screen.id='week';
+  screen.className='screen';
+  screen.innerHTML=`<div class="week-hero"><div><p class="eyebrow">16–23 August 2026</p><h2>Your week, planned intelligently</h2><p>Use market days and regular closures to choose the right outing, while keeping every day flexible around heat and energy.</p></div></div>
+  <div class="week-alert"><b>Important:</b> market locations and summer opening hours can change. This guide uses the latest published information, but check linked official pages again shortly before travelling.</div>
+  <div class="planning-rules"><div class="rule-card"><h3>Tuesday rule</h3><p>Keep Tuesday for drives, villages or water. Ancient Aptera and the Archaeological Museum currently list Tuesday closures.</p></div><div class="rule-card"><h3>Market rule</h3><p>Go early. Markets are cooler, less crowded and easier to combine with a short city visit before lunch.</p></div><div class="rule-card"><h3>Heat rule</h3><p>Outdoor archaeology before 10:30. Museums, lunch, scenic drives and the villa pool for the hottest hours.</p></div></div>
+  <div id="weekGrid" class="week-grid"></div>
+  <div class="source-note">Checked against current official information from the <a href="https://www.chania.gr/enimerosi/nea/arxeia-dt/archeio-dt-2026/sto-oikopedo-tis-proin-avea-i-laiki-agora-tis-pebtis/" target="_blank" rel="noopener">Municipality of Chania</a>, <a href="https://ancientaptera.gr/en/contact_us/" target="_blank" rel="noopener">Ancient Aptera</a>, the <a href="https://amch.gr/en/" target="_blank" rel="noopener">Archaeological Museum of Chania</a> and the <a href="https://www.rethymno.gr/en/city/dieta-cretese/mercati-all-aperto.html" target="_blank" rel="noopener">Municipality of Rethymno</a>.</div>`;
+
+  const savedScreen=document.querySelector('#saved');
+  document.querySelector('main').insertBefore(screen,savedScreen);
+
+  const nav=document.createElement('button');
+  nav.className='nav';
+  nav.dataset.screen='week';
+  nav.innerHTML='<span>▦</span>Week';
+  const savedNav=document.querySelector('.bottom-nav [data-screen="saved"]');
+  document.querySelector('.bottom-nav').insertBefore(nav,savedNav);
+  nav.onclick=()=>go('week');
+
+  function action(link){
+    const [label,target]=link;
+    if(target==='restaurants'||target==='explore')return `<button data-week-go="${target}">${label}</button>`;
+    const place=places.find(p=>p.id===target);
+    if(place)return `<button data-week-place="${target}">${label}</button>`;
+    return `<a class="secondary" href="${target}" target="_blank" rel="noopener">${label}</a>`;
+  }
+
+  document.querySelector('#weekGrid').innerHTML=window.WEEK_GUIDE.map(d=>`<article class="day-card ${d.birthday?'birthday':''}"><div class="day-head"><div class="day-date"><b>${d.date}</b><span>Aug</span></div><div class="day-title"><h3>${d.day}: ${d.title}</h3><p>${d.birthday?'Eponine’s 9th birthday':'Flexible family plan'}</p></div><span class="day-badge">${d.badge}</span></div><div class="day-body"><div class="day-columns"><div class="day-box"><h4>Good plan</h4><p>${d.plan}</p></div><div class="day-box avoid"><h4>Watch out for</h4><p>${d.avoid}</p></div></div>${d.market?`<div class="market-row"><span class="market-icon">▤</span><div><b>Market note</b><span>${d.market}</span></div></div>`:''}<div class="day-actions">${d.links.map(action).join('')}</div></div></article>`).join('');
+
+  document.querySelectorAll('[data-week-go]').forEach(b=>b.onclick=()=>go(b.dataset.weekGo));
+  document.querySelectorAll('[data-week-place]').forEach(b=>b.onclick=()=>openPlace(b.dataset.weekPlace));
+
+  const home=document.createElement('section');
+  home.className='section';
+  home.innerHTML='<div class="section-head"><div><p class="eyebrow">Plan around the island</p><h2>Day-by-day guide</h2></div><button class="text-btn">Open week</button></div><div class="note"><h3>Tuesday is the key closure day</h3><p>Use Tuesday for a scenic drive or village lunch, then place archaeology and the Chania museum on other mornings.</p></div>';
+  document.querySelector('#home').appendChild(home);
+  home.querySelector('button').onclick=()=>go('week');
 })();
