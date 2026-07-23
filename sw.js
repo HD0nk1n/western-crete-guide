@@ -1,4 +1,4 @@
-const CACHE = 'crete-v4';
+const CACHE = 'crete-v5';
 const CORE = [
   './',
   './index.html',
@@ -6,6 +6,8 @@ const CORE = [
   './app.js',
   './restaurants.js',
   './restaurants.css',
+  './week-guide.js',
+  './week-guide.css',
   './manifest.webmanifest',
   './assets/icon-192.svg',
   './assets/icon-512.svg'
