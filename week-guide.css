@@ -1,0 +1,49 @@
+.bottom-nav{grid-template-columns:repeat(6,1fr)}
+.week-hero{min-height:250px;padding:28px;display:flex;align-items:flex-end;color:white;background:linear-gradient(135deg,#173f3a,#28665f 55%,#d8a447)}
+.week-hero .eyebrow{color:#f7cf79}
+.week-hero h2{font-family:Georgia,serif;font-size:42px;line-height:1;margin:8px 0}
+.week-hero p{margin:0;max-width:650px;opacity:.9;line-height:1.5}
+.week-alert{margin:16px 0;padding:15px 17px;border-radius:18px;background:#fff3d8;border:1px solid #ead194;color:#5d4a20;line-height:1.5}
+.week-alert b{color:#493912}
+.week-grid{display:grid;gap:14px;margin-top:18px}
+.day-card{background:var(--paper);border-radius:22px;overflow:hidden;box-shadow:0 10px 30px #173f3a13;border:1px solid transparent}
+.day-card.birthday{border-color:#d8a447;box-shadow:0 12px 34px #d8a44724}
+.day-head{display:grid;grid-template-columns:78px 1fr auto;gap:14px;align-items:center;padding:16px;background:linear-gradient(135deg,#edf2ee,#fffdf8)}
+.day-date{width:66px;height:66px;border-radius:18px;background:var(--ink);color:white;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.day-date b{font-size:24px;line-height:1}
+.day-date span{font-size:10px;text-transform:uppercase;letter-spacing:.12em;margin-top:4px}
+.day-title h3{font-family:Georgia,serif;font-size:24px;margin:0 0 4px;color:var(--ink)}
+.day-title p{margin:0;color:var(--muted);font-size:13px}
+.day-badge{border-radius:999px;padding:7px 10px;background:#e9e2d4;color:var(--ink);font-size:11px;font-weight:800;white-space:nowrap}
+.day-card.birthday .day-badge{background:#f7e6b8;color:#694d08}
+.day-body{padding:16px}
+.day-columns{display:grid;grid-template-columns:1.2fr 1fr;gap:14px}
+.day-box{background:#f5f1e8;border-radius:16px;padding:14px}
+.day-box h4{margin:0 0 8px;color:var(--ink);font-size:13px;text-transform:uppercase;letter-spacing:.08em}
+.day-box p{margin:0;color:#50615d;line-height:1.5}
+.day-box.avoid{background:#f8ebe7}
+.market-row{display:flex;gap:10px;align-items:flex-start;margin-top:12px;padding-top:12px;border-top:1px solid var(--line)}
+.market-icon{font-size:22px;line-height:1}
+.market-row b{display:block;color:var(--ink)}
+.market-row span{display:block;color:var(--muted);font-size:13px;line-height:1.45;margin-top:3px}
+.day-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:13px}
+.day-actions a,.day-actions button{border:0;text-decoration:none;border-radius:999px;padding:9px 12px;background:var(--ink);color:white;font-weight:800;font-size:12px}
+.day-actions a.secondary{background:#e8e1d4;color:var(--ink)}
+.planning-rules{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:18px 0}
+.rule-card{background:var(--paper);border-radius:18px;padding:16px;border:1px solid var(--line)}
+.rule-card h3{font-family:Georgia,serif;margin:0 0 7px;color:var(--ink)}
+.rule-card p{margin:0;color:var(--muted);line-height:1.5;font-size:13px}
+.source-note{font-size:12px;color:var(--muted);line-height:1.5;background:var(--paper);border-radius:16px;padding:14px;margin-top:18px}
+.source-note a{color:var(--terracotta);font-weight:800}
+@media(max-width:700px){
+ .bottom-nav{grid-template-columns:repeat(6,1fr)}
+ .nav{font-size:9px;padding:4px 1px}
+ .nav span{font-size:17px}
+ .week-hero{min-height:230px;padding:22px}
+ .week-hero h2{font-size:34px}
+ .day-head{grid-template-columns:64px 1fr}
+ .day-date{width:58px;height:58px}
+ .day-badge{grid-column:2;justify-self:start}
+ .day-columns{grid-template-columns:1fr}
+ .planning-rules{grid-template-columns:1fr}
+}
