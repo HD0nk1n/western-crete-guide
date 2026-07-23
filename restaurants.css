@@ -10,9 +10,22 @@
 .restaurant-card p{color:#50615d;line-height:1.5;margin:10px 0}
 .restaurant-card.compact p{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
 .restaurant-card.compact .restaurant-best{display:none}
-.restaurant-banner{height:112px;padding:16px;display:flex;align-items:flex-end;justify-content:space-between;background:linear-gradient(135deg,#173f3a,#c9684d);color:white}
-.restaurant-initials{font-family:Georgia,serif;font-size:43px;font-weight:700;line-height:1;letter-spacing:.02em;opacity:.96}
-.restaurant-price{background:#fff2;border:1px solid #fff5;border-radius:999px;padding:7px 10px;font-size:12px;font-weight:800;letter-spacing:.06em}
+.restaurant-banner{height:128px;padding:16px;display:flex;align-items:flex-end;justify-content:space-between;color:white;position:relative;overflow:hidden}
+.restaurant-illustration{background:linear-gradient(135deg,#173f3a,#c9684d)}
+.restaurant-illustration.nearby{background:linear-gradient(135deg,#315f4b,#d09a54)}
+.restaurant-illustration.village{background:linear-gradient(135deg,#7e503c,#d7a35f)}
+.restaurant-illustration.seaside{background:linear-gradient(135deg,#2d6f78,#7fc6c8)}
+.restaurant-illustration.family{background:linear-gradient(135deg,#4e6f52,#deb46b)}
+.restaurant-illustration.special{background:linear-gradient(135deg,#352f4f,#a66b7d)}
+.restaurant-illustration.quick{background:linear-gradient(135deg,#7a4e31,#d9a56f)}
+.restaurant-illustration.mountain{background:linear-gradient(135deg,#405d4e,#8ea47c)}
+.restaurant-illustration.daytrip{background:linear-gradient(135deg,#375d71,#d1a15e)}
+.restaurant-scene{position:absolute;inset:0;pointer-events:none}
+.scene-icon{position:absolute;left:18px;top:16px;font-size:44px;line-height:1;opacity:.95}
+.scene-line{position:absolute;left:-5%;right:-5%;bottom:28px;height:2px;background:#ffffff70;transform:rotate(-4deg)}
+.scene-dot{position:absolute;width:76px;height:76px;border:2px solid #ffffff40;border-radius:50%;right:62px;top:14px}
+.restaurant-initials{font-family:Georgia,serif;font-size:43px;font-weight:700;line-height:1;letter-spacing:.02em;opacity:.96;z-index:1;text-shadow:0 2px 12px #0003}
+.restaurant-price{background:#fff2;border:1px solid #fff5;border-radius:999px;padding:7px 10px;font-size:12px;font-weight:800;letter-spacing:.06em;z-index:1}
 .restaurant-best{background:#f2eee5;border-radius:14px;padding:12px;color:#42534f;font-size:13px;line-height:1.45}
 .restaurant-best b{color:var(--ink)}
 .restaurant-heading{align-items:center;margin-bottom:8px}
