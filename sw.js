@@ -1,4 +1,4 @@
-const CACHE = 'crete-v5';
+const CACHE = 'crete-v6';
 const CORE = [
   './',
   './index.html',
